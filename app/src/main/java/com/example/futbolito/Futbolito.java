@@ -62,4 +62,28 @@ public class Futbolito extends View implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
-}
+    @Override
+    public void onDraw(Canvas lienzo){
+        Resources res = getResources();
+        Bitmap imagen = BitmapFactory.decodeResource(res, R.drawable.cancha);
+        Bitmap cancha = redimensionarImagenMaximo(imagen,ancho,alto-160);
+        lienzo.drawBitmap( cancha, 0, 0, pincel);
+        pincel.setColor(Color.BLACK);
+        lienzo.drawCircle(ejex,ejey,ejez+tam,pincel);
+    }
+
+    public Bitmap redimensionarImagenMaximo(Bitmap mBitmap, float newWidth, float newHeigth){
+        //Redimensionamos
+        int width = mBitmap.getWidth();
+        int height = mBitmap.getHeight();
+        float scaleWidth = newWidth / width;
+        float scaleHeight = newHeigth / height;
+        // create a matrix for the manipulation
+        Matrix matrix = new Matrix();
+        // resize the bit map
+        matrix.postScale(scaleWidth, scaleHeight);
+        // recreate the new Bitmap
+        return Bitmap.createBitmap(mBitmap, 0, 0, width, height, matrix, false);
+    }
+    }
+
