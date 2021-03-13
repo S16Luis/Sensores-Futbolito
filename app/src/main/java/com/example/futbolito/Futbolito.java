@@ -62,6 +62,7 @@ public class Futbolito extends View implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
     @Override
     public void onDraw(Canvas lienzo){
         Resources res = getResources();
